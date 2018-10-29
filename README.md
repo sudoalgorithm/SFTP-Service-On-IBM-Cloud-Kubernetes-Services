@@ -2,9 +2,9 @@
 
 ## Prerequisite
 
-- [Docker CLI](<(https://docs.docker.com/install/)>)
-- [IBM Cloud CLI](<(https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)>)
-- [Kubernetes CLI](<(https://kubernetes.io/docs/tasks/tools/install-kubectl/)>)
+- [Docker CLI](https://docs.docker.com/install/)
+- [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
+- [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
 ### Step - 1 Build and Upload SFTP container image to IBM Cloud Container Registry
 
