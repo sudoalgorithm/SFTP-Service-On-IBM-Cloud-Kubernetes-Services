@@ -119,13 +119,13 @@ kubectl get pvc task-pv-claim
 ```
 
 ```
-kubectl create -f ftp-deployment.yaml
+kubectl create -f sftp-deployment.yaml
 ```
 
 ```
-kubectl create -f ftp-service.yaml
+kubectl create -f sftp-service.yaml
 ```
 
 ```
-kubectl create -f ftp-ingress.yaml
+kubectl create -f sftp-ingress.yaml
 ```
