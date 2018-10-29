@@ -1,4 +1,4 @@
-# Deploy SFTP (SHH File Transfer Protocol) On IBM Cloud Kubernetes Service
+# Deploy SFTP (SHH File Transfer Protocol) Service On IBM Cloud Kubernetes Service
 
 ## Prerequisite
 
@@ -33,7 +33,7 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 - Once pull is complete, next we need to make changes to this base image and upload it IBM Cloud container registry (Private).
 
-- Note:- Execute each command step by step
+- Note:- Execute each command mentioned below step by step
 
   ```
   ibmcloud plugin install container-registry -r Bluemix
@@ -69,4 +69,63 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   ```
   ![alt text](images/image7.png)
 
-### Step 2:- Build and Upload SFTP container image to IBM Cloud Container Registry
+### Step 2:- Deploy the SFTP Service To IBM Cloud Kubernetes Service And Create Persistant Volume To Store the Data.
+
+#### Create A Kubernetes Cluster
+
+- Go to your **IBM Cloud Dashboard** and [Sign in](https://console.bluemix.net/dashboard/apps/)
+- Go to **IBM Kubernetes Service**
+
+![alt text](images/image8.png)
+
+- Click on **Create Cluster**
+
+![alt text](images/image9.png)
+
+- Select the **region** where you want to deploy the cluster, give a **name** to your cluster and click on **create cluster**.
+- Depending upon your account (**Paid or Free**), select the appropriate cluster type.
+- It takes some time for cluster to get ready (around 30 mins).
+
+![alt text](images/image10.png)
+
+- Once the cluster is ready, click on your cluster name and you will be redirected to a new page containing information regarding your cluster and worker node.
+
+![alt text](images/image11.png)
+
+- Click on worker node tab, to get cluster's **Public IP**.
+
+![alt text](images/image12.png)
+
+- After the cluster is deployed successfully, go back to github and clone or download the repository.
+
+- Once the repository is on your local system switch to inside the main directory **kubernetes-sftp directory**.Inside the directory you will find 5 file required to deploy the SFTP service container on to kuberentes and create a persistant volume.
+
+- Execute each command mentioned below step by step
+
+```
+kubectl create -f task-pv-volume.yaml
+```
+
+```
+kubectl get pv task-pv-volume
+```
+
+```
+kubectl create -f task-pv-claim.yaml
+```
+
+```
+kubectl get pvc task-pv-claim
+```
+
+```
+kubectl create -f ftp-deployment.yaml
+```
+
+```
+kubectl create -f ftp-service.yaml
+```
+
+```
+kubectl create -f ftp-ingress.yaml
+```
