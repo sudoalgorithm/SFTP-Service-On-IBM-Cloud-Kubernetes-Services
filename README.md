@@ -1,4 +1,4 @@
-# Deploy SFTP (SHH File Transfer Protocol) Service On IBM Cloud Kubernetes Service
+# Deploy SFTP (SSH File Transfer Protocol) Service On IBM Cloud Kubernetes Service
 
 ## Prerequisite
 
@@ -10,18 +10,22 @@
 
 In step 1 we will pull an existing SFTP container image from docker hub, make few changes to it and upload it to IBM Cloud Container Registry (Private).
 
-- First Login into your IBM Cloud account.
-
+- First Login into your IBM Cloud account.For Example 'ibmcloud login -a https://api.eu-gb.bluemix.net' for UK region
   ```
   ibmcloud login -a <region_endpoint>
   ```
 
-- Set your organisation and space.
+- Set your organisation and space. You can get this from your Bluemix dashboard
   ```
   ibmcloud target -o "<organisation_name>" -s "<space_name>"
   ```
 
-![alt text](images/image1.png)
+- Target the IBM Cloud Container Service region in which you want to work. You can get this from your Bluemix dashboard. For Example ibmcloud cs region-set uk-south
+  ```
+  ibmcloud cs region-set <service_region>
+  ```
+  
+![alt text](images/sftp-image1.png)
 
 - Once you are successfully logged into your IBM Cloud account, pull a base docker image of SFTP from docker hub.
 
