@@ -4,7 +4,8 @@
 
 - [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
 - [Docker CLI](https://docs.docker.com/install/)
-- IBM Cloud Container Registry Plugin  
+- **IBM Cloud Container Registry Plugin**
+
   ```
   ibmcloud plugin install container-registry -r Bluemix
   ```
@@ -66,13 +67,13 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   ![alt text](images/image6.png)
 
 - After executing the commands mentioned above, check weather the image is uploaded correctly either by executing the command mentioned below or by going to IBM Cloud Container Registry dashboard
-  - Command
+  - **Command**
   ```
   ibmcloud cr image-list
   ```
   ![alt text](images/image7.png)
   
-  - IBM Cloud Container Registry Dashboard
+  - **IBM Cloud Container Registry Dashboard**
 
   ![alt text](images/image8.png)
 
@@ -83,7 +84,7 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 - Go to your **IBM Cloud Dashboard** and [Sign in](https://console.bluemix.net/dashboard/apps/)
 - Go to **IBM Kubernetes Service**
 
-![alt text](images/image8.png)
+![alt text](images/)
 
 - Click on **Create Cluster**
 
