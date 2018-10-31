@@ -19,13 +19,14 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   ```
   ibmcloud target -o "<organisation_name>" -s "<space_name>"
   ```
+  ![alt text](images/image1.png)
 
 - Target the IBM Cloud Container Service region in which you want to work. You can get this from your Bluemix dashboard. For Example ibmcloud cs region-set uk-south
   ```
   ibmcloud cs region-set <service_region>
   ```
   
-![alt text](images/sftp-image1.png)
+
 
 - Once you are successfully logged into your IBM Cloud account, pull a base docker image of SFTP from docker hub.
 Note that you need to have a docker client running otherwise the command will return an error
