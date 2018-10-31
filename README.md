@@ -44,9 +44,9 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
   ![alt text](images/image3.png)
 
-- Once pull is complete, next we need to make changes to this base image and upload it **IBM Cloud Container Registry (Private)**.
+#### Once pull is complete, next we need to make changes to this base image and upload it **IBM Cloud Container Registry (Private)**. Follow the steps below.
 
-- Note:- Execute each command mentioned below step by step
+**Execute each command mentioned below step by step**
 
   ```
   ibmcloud cr namespace-add <my_namespace>
@@ -72,13 +72,13 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   ![alt text](images/image6.png)
 
 - After executing the commands mentioned above, check weather the image is uploaded correctly either by executing the command mentioned below or by going to IBM Cloud Container Registry dashboard
-  - **Command**
+  - **Option 1:- CLI Command**
   ```
   ibmcloud cr image-list
   ```
   ![alt text](images/image7.png)
   
-  - **IBM Cloud Container Registry Dashboard**
+  - **Option 2:- IBM Cloud Container Registry Dashboard**
 
   ![alt text](images/image8.png)
 
@@ -86,8 +86,8 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 #### Create A Kubernetes Cluster
 
-- Go to your **IBM Cloud Dashboard** and [Sign in](https://console.bluemix.net/dashboard/apps/)
-- Go to **IBM Kubernetes Service**
+- Go to your **IBM Cloud Portal** and [Sign in](https://console.bluemix.net/dashboard/apps/)
+- Go to **IBM Kubernetes Service** by clicking on **Containers** in the hamburger menu.
 
 ![alt text](images/image10.png)
 
@@ -96,7 +96,7 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 ![alt text](images/image11.png)
 
 - Select the **region** where you want to deploy the cluster, give a **name** to your cluster and click on **create cluster**.
-- Depending upon your account (**Paid or Free**), select the appropriate cluster type.
+- Depending upon your account (**Paid or Free**), select the appropriate cluster type. Paid option allows the creation of multiple worker nodes to provide higher availability and should be used for any production workloads.
 - It takes some time for cluster to get ready (around 30 mins).
 
 ![alt text](images/image12.png)
@@ -109,9 +109,11 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 ![alt text](images/image14.png)
 
-- After the cluster is deployed successfully, go back to github and clone or download the repository.
+- After the cluster is deployed successfully, go back to [github and clone or download the repository](https://github.com/sudoalgorithm/SSH-File-Transfer-Protocol-On-IBM-Cloud-Kubernetes-Services.git). 
 
-- Once the repository is on your local system switch to inside the main directory **kubernetes-sftp directory**. Inside the directory you will find 5 file required to deploy the **SFTP Service Container** on to kuberentes and create a **Persistant Volume**.
+![alt text](images/image22.png)
+
+ Once the repository is on your local system switch to inside the main directory **kubernetes-sftp directory**. Inside the directory you will find 5 file required to deploy the **SFTP Service Container** on to kuberentes and create a **Persistant Volume**.
 
 **Execute each command mentioned below step by step**
 
