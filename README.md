@@ -32,9 +32,8 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   ```
   ibmcloud target -o "<organisation_name>" -s "<space_name>"
   ```
-  ![alt text](images/image1.png)
 
-- Target the IBM Cloud Container Service region in which you want to work. You can get this from your Bluemix dashboard. For Example ibmcloud cs region-set uk-south
+- Target the IBM Cloud Container Service region in which you want to work. You can get this from your Bluemix dashboard. For Example **ibmcloud cs region-set uk-south**
   ```
   ibmcloud cs region-set <service_region>
   ```
@@ -124,15 +123,7 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 **Execute each command mentioned below step by step**
 
-- Note:- Get the **Region and Cluster Name** from IBM Cloud Dashboard.
-
-- Target the IBM Cloud Container Service region in which you want to work. 
-
-```
-ibmcloud cs region-set <region>
-```
-
-![alt text](images/image15.png)
+- Note:- Get the **Cluster Name** from IBM Cloud Dashboard.
 
 - Get the command to set the environment variable and download the Kubernetes configuration files.
 
