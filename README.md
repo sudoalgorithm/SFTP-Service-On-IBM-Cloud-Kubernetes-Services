@@ -28,8 +28,9 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   ibmcloud cs region-set <service_region>
   ```
   
-- Once you are successfully logged into your IBM Cloud account, pull a base docker image of SFTP from docker hub.
-Note that you need to have a docker client running otherwise the command will return an error
+- Once you are successfully logged into your IBM Cloud account, pull a base docker image of SFTP from **Docker Hub**. Note that you need to have a **Docker Client** running otherwise the command will return an error).
+
+  ![alt text](images/image9.png)  
 
   ```
   docker pull fauria/vsftpd
@@ -64,11 +65,16 @@ Note that you need to have a docker client running otherwise the command will re
 
   ![alt text](images/image6.png)
 
-- After executing the commands mentioned above, check weather the image is uploaded correctly or not by executing the command :-
+- After executing the commands mentioned above, check weather the image is uploaded correctly either by executing the command mentioned below or by going to IBM Cloud Container Registry dashboard
+  - Command
   ```
   ibmcloud cr image-list
   ```
   ![alt text](images/image7.png)
+  
+  - IBM Cloud Container Registry Dashboard
+
+  ![alt text](images/image8.png)
 
 ### Step 2:- Deploy the SFTP Service To IBM Cloud Kubernetes Service And Create Persistant Volume To Store the Data.
 
