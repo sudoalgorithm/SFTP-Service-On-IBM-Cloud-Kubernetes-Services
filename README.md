@@ -117,8 +117,9 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 **Execute each command mentioned below step by step**
 
+- Note:- Get the **Region and Cluster Name** from IBM Cloud Dashboard.
+
 - Target the IBM Cloud Container Service region in which you want to work. 
-- Note:- Get the region from IBM Cloud Dashboard.
 
 ```
 ibmcloud cs region-set <region>
@@ -129,7 +130,7 @@ ibmcloud cs region-set <region>
 - Get the command to set the environment variable and download the Kubernetes configuration files.
 
 ```
-ibmcloud cs cluster-config SFTP-Service-Cluster
+ibmcloud cs cluster-config <name_of_the_cluster>
 ```
 
 ![alt text](images/image16.png)
