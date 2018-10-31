@@ -39,7 +39,7 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
   ![alt text](images/image3.png)
 
-- Once pull is complete, next we need to make changes to this base image and upload it IBM Cloud container registry (Private).
+- Once pull is complete, next we need to make changes to this base image and upload it **IBM Cloud Container Registry (Private)**.
 
 - Note:- Execute each command mentioned below step by step
 
