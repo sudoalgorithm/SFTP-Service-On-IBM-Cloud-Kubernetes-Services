@@ -142,7 +142,6 @@ kubectl get nodes
 ```
 ![alt text](images/image18.png)
 
-
 ```
 kubectl create -f task-pv-volume.yaml
 ```
@@ -151,6 +150,8 @@ kubectl create -f task-pv-volume.yaml
 kubectl get pv task-pv-volume
 ```
 
+![alt text](images/image19.png)
+
 ```
 kubectl create -f task-pv-claim.yaml
 ```
@@ -158,6 +159,8 @@ kubectl create -f task-pv-claim.yaml
 ```
 kubectl get pvc task-pv-claim
 ```
+
+![alt text](images/image20.png)
 
 ```
 kubectl create -f sftp-deployment.yaml
@@ -170,3 +173,4 @@ kubectl create -f sftp-service.yaml
 ```
 kubectl create -f sftp-ingress.yaml
 ```
+![alt text](images/image21.png)
