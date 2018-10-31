@@ -1,5 +1,10 @@
 # Deploy SFTP (SSH File Transfer Protocol) Service On IBM Cloud Kubernetes Service
 
+This is a highly SFTP Service deployed on IBM Cloud Kubernetes Service.
+Example Use Case:-
+- Backup
+- File Transfer
+
 ## Prerequisite
 
 - [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
