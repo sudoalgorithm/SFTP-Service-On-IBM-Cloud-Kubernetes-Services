@@ -9,6 +9,11 @@
   ```
   ibmcloud plugin install container-registry -r Bluemix
   ```
+- **IBM Cloud IBM Kubernetes Service Plugin**
+  ```
+  curl -sL https://ibm.biz/idt-installer | bash
+  ```
+
 ### Step 1:- Build and Upload SFTP container image to IBM Cloud Container Registry
 
 In step 1 we will pull an existing SFTP container image from docker hub, make few changes to it and upload it to IBM Cloud Container Registry (Private).
@@ -106,9 +111,37 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 - After the cluster is deployed successfully, go back to github and clone or download the repository.
 
-- Once the repository is on your local system switch to inside the main directory **kubernetes-sftp directory**.Inside the directory you will find 5 file required to deploy the SFTP service container on to kuberentes and create a persistant volume.
+- Once the repository is on your local system switch to inside the main directory **kubernetes-sftp directory**. Inside the directory you will find 5 file required to deploy the **SFTP Service Container** on to kuberentes and create a **Persistant Volume**.
 
-- Execute each command mentioned below step by step
+**Execute each command mentioned below step by step**
+
+- Target the IBM Cloud Container Service region in which you want to work.
+
+```
+ibmcloud cs region-set us-south
+```
+
+![alt text](images/image15.png)
+
+- Get the command to set the environment variable and download the Kubernetes configuration files.
+
+```
+ibmcloud cs cluster-config SFTP-Service-Cluster
+```
+
+![alt text](images/image16.png)
+
+- Copy the environment variables generated after executing previous command and paste it in the terminal.
+
+![alt text](images/image17.png)
+
+- Verify that you can connect to your cluster by listing your worker nodes.
+
+```
+kubectl get nodes
+```
+![alt text](images/image18.png)
+
 
 ```
 kubectl create -f task-pv-volume.yaml
