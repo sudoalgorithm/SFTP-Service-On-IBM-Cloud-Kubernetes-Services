@@ -82,6 +82,8 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
   ![alt text](images/image8.png)
 
+  - Note:- Keep a note of the image link which is highlighted in the green box, it will be used later.
+
 ### Step 2:- Deploy the SFTP Service To IBM Cloud Kubernetes Service And Create Persistant Volume To Store the Data.
 
 #### Create A Kubernetes Cluster
@@ -165,6 +167,8 @@ kubectl get pvc task-pv-claim
 ```
 
 ![alt text](images/image20.png)
+
+- Note:- Ensure **line 18** in the sftp-deployment.yaml matches the image link noted earlier in the green box.
 
 ```
 kubectl create -f sftp-deployment.yaml
