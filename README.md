@@ -84,25 +84,25 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 - Go to your **IBM Cloud Dashboard** and [Sign in](https://console.bluemix.net/dashboard/apps/)
 - Go to **IBM Kubernetes Service**
 
-![alt text](images/)
+![alt text](images/image10.png)
 
 - Click on **Create Cluster**
 
-![alt text](images/image9.png)
+![alt text](images/image11.png)
 
 - Select the **region** where you want to deploy the cluster, give a **name** to your cluster and click on **create cluster**.
 - Depending upon your account (**Paid or Free**), select the appropriate cluster type.
 - It takes some time for cluster to get ready (around 30 mins).
 
-![alt text](images/image10.png)
+![alt text](images/image12.png)
 
 - Once the cluster is ready, click on your cluster name and you will be redirected to a new page containing information regarding your cluster and worker node.
 
-![alt text](images/image11.png)
+![alt text](images/image13.png)
 
 - Click on worker node tab, to get cluster's **Public IP**.
 
-![alt text](images/image12.png)
+![alt text](images/image14.png)
 
 - After the cluster is deployed successfully, go back to github and clone or download the repository.
 
