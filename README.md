@@ -109,7 +109,7 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 ![alt text](images/image14.png)
 
-- After the cluster is deployed successfully, go back to [github and clone or download the repository](https://github.com/sudoalgorithm/SSH-File-Transfer-Protocol-On-IBM-Cloud-Kubernetes-Services.git). 
+- After the cluster is deployed successfully, go to Github and [clone or download the repository](https://github.com/sudoalgorithm/SSH-File-Transfer-Protocol-On-IBM-Cloud-Kubernetes-Services.git). 
 
 ![alt text](images/image22.png)
 
@@ -117,10 +117,11 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
 
 **Execute each command mentioned below step by step**
 
-- Target the IBM Cloud Container Service region in which you want to work.
+- Target the IBM Cloud Container Service region in which you want to work. 
+- Note:- Get the region from IBM Cloud Dashboard.
 
 ```
-ibmcloud cs region-set us-south
+ibmcloud cs region-set <region>
 ```
 
 ![alt text](images/image15.png)
