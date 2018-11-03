@@ -40,7 +40,7 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   
 - Once you are successfully logged into your IBM Cloud account, pull a base docker image of SFTP from **Docker Hub**. Note that you need to have a **Docker Client** running otherwise the command will return an error.
 
-  ![alt text](images/image9.png =100*100)
+  ![alt text](images/image9.png =100x100)
 
   ```
   docker pull fauria/vsftpd
