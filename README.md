@@ -38,9 +38,9 @@ In step 1 we will pull an existing SFTP container image from docker hub, make fe
   ibmcloud cs region-set <service_region>
   ```
   
-- Once you are successfully logged into your IBM Cloud account, pull a base docker image of SFTP from **Docker Hub**. Note that you need to have a **Docker Client** running otherwise the command will return an error).
+- Once you are successfully logged into your IBM Cloud account, pull a base docker image of SFTP from **Docker Hub**. Note that you need to have a **Docker Client** running otherwise the command will return an error.
 
-  ![alt text](images/image9.png)  
+  ![alt text](images/image9.png){:height="50%" width="50%"}
 
   ```
   docker pull fauria/vsftpd
