@@ -14,6 +14,7 @@
   ibmcloud plugin install container-registry -r Bluemix
   ```
 - [Docker](https://docs.docker.com/install/)
+- [Clone or download the repository from github](https://github.com/sudoalgorithm/SSH-File-Transfer-Protocol-On-IBM-Cloud-Kubernetes-Services.git)
 
 ### Step 1:- Deploy A Kubernetes Cluster
 
@@ -85,19 +86,100 @@
 
 Install the IBM Cloud Object Storage plug-in with a Helm chart to set up pre-defined storage classes for IBM Cloud Object Storage. Use these storage classes to create a PVC to provision IBM Cloud Object Storage for the SFTP service.
 
-### Step 3:- Build and Upload SFTP container image to IBM Cloud Container Registry
-
-We will pull an existing SFTP container image from docker hub, make few changes to it and upload it to IBM Cloud Container Registry (Private).
-
 - First Login into your IBM Cloud account.For Example 'ibmcloud login -a https://api.eu-gb.bluemix.net' for UK region
   ```
   ibmcloud login -a <region_endpoint>
   ```
-
 - Set your organisation and space. You can get this from your Bluemix dashboard
   ```
   ibmcloud target -o "<organisation_name>" -s "<space_name>"
   ```
+Follow the instructions to install the Helm client on your local machine, install the Helm server (tiller) in your cluster, and add the IBM Cloud Helm chart repository to the cluster where you want to use the IBM Cloud Object Storage plug-in.
+
+- Add the IBM Cloud Helm repo to your cluster. 
+  ```
+  helm repo add ibm https://registry.bluemix.net/helm/ibm
+  ```
+- Update the Helm repo to retrieve the latest version of all Helm charts in this repo.
+  ```
+  helm repo update
+  ```
+- Download the Helm charts and unpack the charts in your current directory.
+  ```
+  helm fetch --untar ibm/ibmcloud-object-storage-plugin
+  ```
+If you use macOS or a Linux distribution, install the IBM Cloud Object Storage Helm plug-in ibmc. The plug-in is used to automatically retrieve your cluster location and to set the API endpoint for your IBM Cloud Object Storage buckets in your storage classes. If you use Windows as your operating system, continue with the next step.
+- Install the Helm plug-in.
+  ```
+  helm plugin install ibmcloud-object-storage-plugin/helm-ibmc
+  ```
+- Verify that the ibmc plug-in is installed successfully.
+  ```
+  helm ibmc --help
+  ```
+
+### Step 4:- Creating a secret for the object storage service credentials.
+
+To access your IBM Cloud Object Storage service instance to read and write data, you must securely store the service credentials in a Kubernetes secret. The IBM Cloud Object Storage plug-in uses these credentials for every read or write operation to your bucket.
+
+- Retrieve the **apikey**, or the **access_key_id** and the **secret_access_key** of your IBM Cloud Object Storage service credentials.
+- Get the **GUID** of your IBM Cloud Object Storage service instance.
+  ```
+  ibmcloud resource service-instance <service_name> | grep GUID
+  ```
+- Encode the IBM Cloud Object Storage **GUID**, **apikey**, **access_key_id** and **secret_access_key** that you retrieved earlier to base64 and note all the base64 encoded values. Repeat this command for each parameter to retrieve the base 64 encoded value.
+- Change the value (**access-key, secret-key, api-key, service-instance-id**) in **sftp-secret.yaml** to define your Kubernetes secret.
+- Create the secret in your cluster.
+  ```
+  kubectl create -f sftp-secret.yaml
+  ```
+- Verify that the secret is created in your namespace.
+  ```
+  kubectl get secret
+  ```
+
+### Step 5:- Limit the IBM Cloud Object Storage plug-in to access only the Kubernetes secrets that hold your IBM Cloud Object Storage service credentials.
+
+- Navigate to the templates directory and list available files.
+  ```
+  cd ibmcloud-object-storage-plugin/templates && ls
+  ```
+- Open the provisioner-sa.yaml file and look for the ibmcloud-object-storage-secret-reader ClusterRole definition.
+- Add the name of the secret that you created earlier to the list of secrets that the plug-in is authorized to access in the resourceNames section.
+  ```
+  kind: ClusterRole
+  apiVersion: rbac.authorization.k8s.io/v1beta1
+  metadata:
+    name: ibmcloud-object-storage-secret-reader
+  rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["<secret_name1>"]
+    verbs: ["get"]
+  ```
+- Save your changes.
+- Install the IBM Cloud Object Storage plug-in. When you install the plug-in, pre-defined storage classes are added to your cluster.
+  - For macOS and Linux:
+    ```
+    helm ibmc install ./ibmcloud-object-storage-plugin -f ibmcloud-object-storage-plugin/ibm/values.yaml
+    ```
+- Verify that the plug-in is installed correctly.
+    ```
+    kubectl get pod -n kube-system -o wide | grep object
+    ```
+    The installation is successful when you see one ibmcloud-object-storage-plugin pod and one or more ibmcloud-object-storage-driver pods. The number of ibmcloud-object-storage-driver pods equals the number of worker nodes in your cluster. All pods must be in a Running state for the plug-in to function properly. 
+    If the pods fail, run
+    ```
+    kubectl describe pod -n kube-system <pod_name> 
+    ```
+    to find the root cause for the failure.
+
+- Verify that the storage classes are created successfully.
+    ```
+    kubectl get storageclass | grep s3
+    ```
+
+### Step 6:- Build and Upload SFTP container image to IBM Cloud Container Registry
 
 - Target the IBM Cloud Container Service region in which you want to work. You can get this from your Bluemix dashboard. For Example **ibmcloud cs region-set uk-south**
   ```
@@ -154,14 +236,9 @@ We will pull an existing SFTP container image from docker hub, make few changes 
 
   - Note:- Keep a note of the image link which is highlighted in the green box, it will be used later.
 
-### Step 2:- Deploy the SFTP Service To IBM Cloud Kubernetes Service And Create Persistant Volume To Store the Data.
+### Step 2:- Deploy the SFTP Service To IBM Cloud Kubernetes Service And Create Persistant Volume To Store the Data in Object Storage.
 
-#### 
-- After the cluster is deployed successfully, go to Github and [clone or download the repository](https://github.com/sudoalgorithm/SSH-File-Transfer-Protocol-On-IBM-Cloud-Kubernetes-Services.git). 
-
-![alt text](images/image22.png)
-
- Once the repository is on your local system switch to inside the main directory **kubernetes-sftp directory**. Inside the directory you will find 5 file required to deploy the **SFTP Service Container** on to kuberentes and create a **Persistant Volume**.
+Switch to **kubernetes-sftp directory**. Inside the directory you will find 5 file required to deploy the **SFTP Service Container** on to kuberentes and create a **Persistant Volume**.
 
 **Execute each command mentioned below step by step**
 
