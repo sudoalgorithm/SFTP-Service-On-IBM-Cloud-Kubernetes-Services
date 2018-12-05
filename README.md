@@ -15,7 +15,7 @@
   ```
 - [Docker](https://docs.docker.com/install/)
 
-### Step 1:- Create A Kubernetes Cluster
+### Step 1:- Deploy A Kubernetes Cluster
 
 - Go to your **IBM Cloud Portal** and [Sign in](https://console.bluemix.net/dashboard/apps/)
 - Navigate to **IBM Kubernetes Service** by clicking on **Containers** in the hamburger icon.
@@ -76,11 +76,14 @@
 
   ![alt text](images/image06.png)
 
-- Click View credentials.
+- Click **View credentials**.
 - Make note of the apikey to use OAuth2 tokens to authenticate with the IBM Cloud Object Storage service. For HMAC authentication, in the cos_hmac_keys section, note the **access_key_id** and the **secret_access_key**.
 
   ![alt text](images/image07.png)
 
+### Step 3:- Installing the IBM Cloud Object Storage plug-in.
+
+Install the IBM Cloud Object Storage plug-in with a Helm chart to set up pre-defined storage classes for IBM Cloud Object Storage. Use these storage classes to create a PVC to provision IBM Cloud Object Storage for the SFTP service.
 
 ### Step 3:- Build and Upload SFTP container image to IBM Cloud Container Registry
 
@@ -178,42 +181,27 @@ ibmcloud cs cluster-config <name_of_the_cluster>
 
 - Verify that you can connect to your cluster by listing your worker nodes.
 
-```
-kubectl get nodes
-```
+  ```
+  kubectl get nodes
+  ```
 ![alt text](images/image18.png)
 
-```
-kubectl create -f task-pv-volume.yaml
-```
+- Create a Persistant Volume claim.
 
-```
-kubectl get pv task-pv-volume
-```
-
-![alt text](images/image19.png)
-
-```
-kubectl create -f task-pv-claim.yaml
-```
-
-```
-kubectl get pvc task-pv-claim
-```
-
-![alt text](images/image20.png)
-
+  ```
+  kubectl create -f task-pv-claim.yaml
+  ```
+  ```
+  kubectl get pvc task-pv-claim
+  ```
+  ```
+  kubectl describe task-pv-claim
+  ```
 - Note:- Ensure **line 18** in the sftp-deployment.yaml matches the image link noted earlier in the green box.
+  ```
+  kubectl create -f sftp-deployment.yaml
+  ```
+  ```
+  kubectl create -f sftp-service.yaml
+  ```
 
-```
-kubectl create -f sftp-deployment.yaml
-```
-
-```
-kubectl create -f sftp-service.yaml
-```
-
-```
-kubectl create -f sftp-ingress.yaml
-```
-![alt text](images/image21.png)
