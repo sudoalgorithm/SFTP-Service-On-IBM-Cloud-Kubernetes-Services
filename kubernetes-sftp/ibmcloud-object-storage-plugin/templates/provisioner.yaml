@@ -1,0 +1,33 @@
+#ibmcloud-object-storage-plugin deployment
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: kube-system
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  strategy:
+    type: RollingUpdate
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      tolerations:
+      - operator: "Exists"
+      serviceAccountName: ibmcloud-object-storage-plugin
+      containers:
+        - name: {{ .Chart.Name }}-container
+          image: "{{ .Values.image.pluginImage }}:{{ .Values.image.pluginBuild }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "-provisioner=ibm.io/ibmc-s3fs"
+          env:
+          - name: DEBUG_TRACE
+            value: 'false'

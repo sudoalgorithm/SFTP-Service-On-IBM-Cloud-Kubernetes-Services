@@ -1,0 +1,56 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: ibmc-s3fs-standard-perf-cross-region
+provisioner: ibm.io/ibmc-s3fs
+parameters:
+  ibm.io/chunk-size-mb: "52"
+  ibm.io/parallel-count: "20"
+  ibm.io/multireq-max: "20"
+  ibm.io/tls-cipher-suite: "AESGCM"
+  ibm.io/stat-cache-size: "100000"
+  ibm.io/debug-level: "warn"
+  ibm.io/curl-debug: "false"
+  ibm.io/kernel-cache: "true"
+  ibm.io/s3fs-fuse-retry-count: "5"
+  ibm.io/iam-endpoint: "https://iam.bluemix.net"
+  {{- if eq .Values.dcname "dal09" "dal10" "dal12" "dal13" }}
+  ibm.io/object-store-endpoint: "{{ .Values.us_dal.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.us_dal.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "sao01" }}
+  ibm.io/object-store-endpoint: "{{ .Values.us_south.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.us_south.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "mon01" "tor01" }}
+  ibm.io/object-store-endpoint: "{{ .Values.us_east.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.us_east.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "wdc04" "wdc06" "wdc07" }}
+  ibm.io/object-store-endpoint: "{{ .Values.us_wdc.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.us_wdc.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "lon02" "lon04" "lon06" }}
+  ibm.io/object-store-endpoint: "{{ .Values.eu_lon.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.eu_lon.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "ams03" }}
+  ibm.io/object-store-endpoint: "{{ .Values.eu_ams.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.eu_ams.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "fra02" "fra04" "fra05" }}
+  ibm.io/object-store-endpoint: "{{ .Values.eu_fra.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.eu_fra.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "osl01" "par01" }}
+  ibm.io/object-store-endpoint: "{{ .Values.eu_de_geo.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.eu_de_geo.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "mel01" "syd01" "syd04" "sng01" }}
+  ibm.io/object-store-endpoint: "{{ .Values.ap_geo.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.ap_geo.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "hkg02" }}
+  ibm.io/object-store-endpoint: "{{ .Values.ap_hkg.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.ap_hkg.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "seo01" }}
+  ibm.io/object-store-endpoint: "{{ .Values.ap_seo.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.ap_seo.crossregion.class.standard }}"
+  {{- else if eq .Values.dcname "tok02" }}
+  ibm.io/object-store-endpoint: "{{ .Values.ap_tok.crossregion.url }}"
+  ibm.io/object-store-storage-class: "{{ .Values.ap_tok.crossregion.class.standard }}"
+  {{- else }}
+  ibm.io/object-store-endpoint: "NA"
+  ibm.io/object-store-storage-class: "NA"
+  {{- end }}

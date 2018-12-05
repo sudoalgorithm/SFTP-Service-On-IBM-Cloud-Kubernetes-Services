@@ -1,0 +1,10 @@
+# ServiceAccount for ibmcloud-object-storage-driver
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ibmcloud-object-storage-driver
+  namespace: kube-system
+imagePullSecrets:
+  - name: bluemix-default-secret
+  - name: bluemix-default-secret-regional
+  - name: bluemix-default-secret-international

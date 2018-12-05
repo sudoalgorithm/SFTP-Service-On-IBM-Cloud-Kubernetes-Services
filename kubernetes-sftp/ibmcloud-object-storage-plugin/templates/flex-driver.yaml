@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: {{ .Chart.Name | replace "plugin" "driver" }}
+  namespace: kube-system
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: {{ .Values.maxUnavailableNodeCount }}
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      tolerations:
+      - operator: "Exists"
+      hostNetwork: true
+      serviceAccountName: ibmcloud-object-storage-driver
+      containers:
+        - name: {{ .Chart.Name | replace "plugin" "driver" }}-container
+          image: "{{ .Values.image.driverImage }}:{{ .Values.image.driverBuild }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+             - mountPath: /host/kubernetes
+               name: kube-driver
+             - mountPath: /host/systemd
+               name: sysd-conf
+             - mountPath: /run/systemd
+               name: sysd-run
+             - mountPath: /host/local
+               name: usr-local
+             - mountPath: /hostroot
+               name: root-fs
+      volumes:
+        - name: kube-driver
+          hostPath:
+             path: /usr/libexec/kubernetes
+        - name: sysd-conf
+          hostPath:
+             path: /lib/systemd
+        - name: sysd-run
+          hostPath:
+             path: /run/systemd
+        - name: usr-local
+          hostPath:
+             path: /usr/local
+        - name: root-fs
+          hostPath:
+             path: /

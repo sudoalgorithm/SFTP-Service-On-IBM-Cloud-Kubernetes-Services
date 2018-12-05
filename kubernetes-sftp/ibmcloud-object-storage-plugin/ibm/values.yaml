@@ -1,0 +1,200 @@
+replicaCount: 1
+maxUnavailableNodeCount: 1
+image:
+  pluginImage: registry.bluemix.net/ibm/ibmcloud-object-storage-plugin
+  driverImage: registry.bluemix.net/ibm/ibmcloud-object-storage-driver
+  pluginBuild: 1.8
+  driverBuild: 1.8
+  pullPolicy: Always
+
+us_south:
+  crossregion:
+    url: https://s3-api.us-geo.objectstorage.service.networklayer.com
+    class:
+      standard: us-standard
+      flex: us-flex
+      vault: us-vault
+      cold: us-cold
+  regional:
+    url: https://s3.us-south.objectstorage.service.networklayer.com
+    class:
+      standard: us-south-standard
+      flex: us-south-flex
+      vault: us-south-vault
+      cold: us-south-cold
+
+us_dal:
+  crossregion:
+    url: https://s3-api.dal-us-geo.objectstorage.service.networklayer.com
+    class:
+      standard: us-standard
+      flex: us-flex
+      vault: us-vault
+      cold: us-cold
+  regional:
+    url: https://s3.us-south.objectstorage.service.networklayer.com
+    class:
+      standard: us-south-standard
+      flex: us-south-flex
+      vault: us-south-vault
+      cold: us-south-cold
+
+us_east:
+  crossregion:
+    url: https://s3-api.us-geo.objectstorage.service.networklayer.com
+    class:
+      standard: us-standard
+      flex: us-flex
+      vault: us-vault
+      cold: us-cold
+  regional:
+    url: https://s3.us-east.objectstorage.service.networklayer.com
+    class:
+      standard: us-east-standard
+      flex: us-east-flex
+      vault: us-east-vault
+      cold: us-east-cold
+
+us_wdc:
+  crossregion:
+    url: https://s3-api.wdc-us-geo.objectstorage.service.networklayer.com
+    class:
+      standard: us-standard
+      flex: us-flex
+      vault: us-vault
+      cold: us-cold
+  regional:
+    url: https://s3.us-east.objectstorage.service.networklayer.com
+    class:
+      standard: us-east-standard
+      flex: us-east-flex
+      vault: us-east-vault
+      cold: us-east-cold
+
+eu_lon:
+  crossregion:
+    url: https://s3.eu-geo.objectstorage.service.networklayer.com
+    class:
+      standard: eu-standard
+      flex: eu-flex
+      vault: eu-vault
+      cold: eu-cold
+  regional:
+    url: https://s3.eu-gb.objectstorage.service.networklayer.com
+    class:
+      standard: eu-gb-standard
+      flex: eu-gb-flex
+      vault: eu-gb-vault
+      cold: eu-gb-cold
+
+eu_ams:
+  crossregion:
+    url: https://s3.ams-eu-geo.objectstorage.service.networklayer.com
+    class:
+      standard: eu-standard
+      flex: eu-flex
+      vault: eu-vault
+      cold: eu-cold
+  regional:
+    url: https://s3.eu-de.objectstorage.service.networklayer.com
+    class:
+      standard: eu-de-standard
+      flex: eu-de-flex
+      vault: eu-de-vault
+      cold: eu-de-cold
+
+eu_fra:
+  crossregion:
+    url: https://s3.fra-eu-geo.objectstorage.service.networklayer.com
+    class:
+      standard: eu-standard
+      flex: eu-flex
+      vault: eu-vault
+      cold: eu-cold
+  regional:
+    url: https://s3.eu-de.objectstorage.service.networklayer.com
+    class:
+      standard: eu-de-standard
+      flex: eu-de-flex
+      vault: eu-de-vault
+      cold: eu-de-cold
+
+eu_de_geo:
+  crossregion:
+    url: https://s3.eu-geo.objectstorage.service.networklayer.com
+    class:
+      standard: eu-standard
+      flex: eu-flex
+      vault: eu-vault
+      cold: eu-cold
+  regional:
+    url: https://s3.eu-de.objectstorage.service.networklayer.com
+    class:
+      standard: eu-de-standard
+      flex: eu-de-flex
+      vault: eu-de-vault
+      cold: eu-de-cold
+
+ap_geo:
+  crossregion:
+    url: https://s3.ap-geo.objectstorage.service.networklayer.com
+    class:
+      standard: ap-standard
+      flex: ap-flex
+      vault: ap-vault
+      cold: ap-cold
+  regional:
+    url: NA
+    class:
+      standard: NA
+      flex: NA
+      vault: NA
+      cold: NA
+
+ap_hkg:
+  crossregion:
+    url: https://s3.hkg-ap-geo.objectstorage.service.networklayer.com
+    class:
+      standard: ap-standard
+      flex: ap-flex
+      vault: ap-vault
+      cold: ap-cold
+  regional:
+    url: NA
+    class:
+      standard: NA
+      flex: NA
+      vault: NA
+      cold: NA
+
+ap_seo:
+  crossregion:
+    url: https://s3.seo-ap-geo.objectstorage.service.networklayer.com
+    class:
+      standard: ap-standard
+      flex: ap-flex
+      vault: ap-vault
+      cold: ap-cold
+  regional:
+    url: NA
+    class:
+      standard: NA
+      flex: NA
+      vault: NA
+      cold: NA
+
+ap_tok:
+  crossregion:
+    url: https://s3.tok-ap-geo.objectstorage.service.networklayer.com
+    class:
+      standard: ap-standard
+      flex: ap-flex
+      vault: ap-vault
+      cold: ap-cold
+  regional:
+    url: NA
+    class:
+      standard: NA
+      flex: NA
+      vault: NA
+      cold: NA

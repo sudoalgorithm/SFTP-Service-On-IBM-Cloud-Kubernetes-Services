@@ -1,0 +1,13 @@
+apiVersion: v1
+description: A Helm chart for installing ibmcloud object storage plugin
+maintainers:
+- email: nkashyap@in.ibm.com
+  name: Neeraj K Kashyap(IBM Object Storage Plugin Team, IBM Kubernetes Service)
+- email: samin@us.ibm.com
+  name: Sandy Amin(IBM Object Storage Plugin Team, IBM Kubernetes Service)
+- email: masachan@in.ibm.com
+  name: Mayank S Sachan(IBM Object Storage Plugin Team, IBM Kubernetes Service)
+- email: ambiknai@in.ibm.com
+  name: Ambika Nair(IBM Object Storage Plugin Team, IBM Kubernetes Service)
+name: ibmcloud-object-storage-plugin
+version: 1.0.1
